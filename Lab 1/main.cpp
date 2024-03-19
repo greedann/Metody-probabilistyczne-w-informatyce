@@ -29,17 +29,17 @@ public:
         fill_with_permutation(&root, values);
     }
 
-    void print(int depth, bool with_repetition = false)
+    void print(int depth, bool without_repetition = false)
     {
         vector<int> path;
         for (auto child : root.children)
         {
-            print(depth-1, child, path, with_repetition);
+            print(depth - 1, child, path, without_repetition);
         }
     }
 
 private:
-    void print(int depth, TreeNode *node, vector<int> path, bool with_repetition = false)
+    void print(int depth, TreeNode *node, vector<int> path, bool without_repetition = false)
     {
         if (depth == 0)
         {
@@ -56,12 +56,12 @@ private:
         new_path.push_back(node->val);
         for (auto child : node->children)
         {
-            if (with_repetition)
+            if (without_repetition)
                 if (child->val < node->val)
                 {
                     continue;
                 }
-            print(depth - 1, child, new_path, with_repetition);
+            print(depth - 1, child, new_path, without_repetition);
         }
     }
 
